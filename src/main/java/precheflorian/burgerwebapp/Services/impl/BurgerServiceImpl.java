@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 public class BurgerServiceImpl implements BurgerService {
-    private static final String TARTU_BURGER_VENUES_URL="https://api.foursquare.com/v2/venues/search?client_id=JGUYO04FCR5YRTWJM1YMFJUQWFDZ3WXX5A3ALZEG12PMHHPK&client_secret=P2PJH3K2OAB14GFPEO2WUD4Q20DJN3JVOA4VNC2XOVL4YNEI&v=20200918&near=tartu&intent=browse&radius=2000&query=burger%20joint&limit=10";
+    private static final String TARTU_BURGER_VENUES_URL="https://api.foursquare.com/v2/venues/search?client_id=JGUYO04FCR5YRTWJM1YMFJUQWFDZ3WXX5A3ALZEG12PMHHPK&client_secret=P2PJH3K2OAB14GFPEO2WUD4Q20DJN3JVOA4VNC2XOVL4YNEI&v=20200920&mode=url&near=Tartu%2C%20Estonia&nearGeoId=72057594038516271&q=Burger%20Joint";
     private static final String BASE_PLACE_API_URL = "https://foursquare.com/v/burger/";
     @Autowired
     BurgerService burgerService;
@@ -52,7 +52,7 @@ public class BurgerServiceImpl implements BurgerService {
    getBurgerVenuesInfo(VenueResult venueResult,
                        List<BurgerVenueInfo>burgerVenues){
         for (Venue venue : venueResult.getResponse().getVenues()){
-            String url = BASE_PLACE_API_URL + venue.getId() +"/" +"image";
+            String url = BASE_PLACE_API_URL + venue.getId() +"/" +"photos";
            List<String> imageUrls = burgerService.getImageUrls(url);
            BurgerResponse response = burgerRecognizeService.getUrlWithBurger(imageUrls);
            if (response!=null){
